@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blueprint — code to documentation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="wrap">
+  <div class="masthead">
+    <span class="eyebrow">Blueprint</span>
+    <h1>Turn your codebase into documentation</h1>
+  </div>
+  <p style="color:var(--text-on-navy-soft);font-size:14px;max-width:640px;margin:0 0 28px;">
+    Select a project folder. The system reads the structure and source files in your browser and drafts a full documentation page — overview, tech stack, setup steps, and a section per file.
+  </p>
+
+  <div class="sheet">
+    <div class="panel blueprint">
+      <span class="crop-tr"></span><span class="crop-bl"></span>
+      <h2>01 · intake</h2>
+
+      <div class="dropzone">
+        Select the root folder of your project.
+        <br />
+        <label class="select-btn" for="folderInput">Select folder</label>
+        <input type="file" id="folderInput" webkitdirectory directory multiple />
+      </div>
+
+      <div class="field">
+        <label for="projectName">Project name (optional)</label>
+        <input type="text" id="projectName" placeholder="my-app" />
+      </div>
+
+      <div class="filecount" id="fileCount"></div>
+      <div class="filelist" id="fileList"></div>
+      <p class="note">Skips <code>node_modules</code>, <code>.git</code>, build output, and lockfiles. Only text-based source files are read — nothing leaves your browser except what's sent to the proxy to draft the docs.</p>
+
+      <button class="generate-btn" id="generateBtn" disabled>Generate documentation</button>
+
+      <div class="status" id="status"></div>
+      <div class="errbox" id="errbox" style="display:none;"></div>
+    </div>
+
+    <div class="panel paper" id="paperPanel">
+      <div class="doc-toolbar" id="toolbar" style="display:none;">
+        <button class="download-btn" id="downloadBtn">Download DOCUMENTATION.md</button>
+      </div>
+      <div class="paper-inner">
+        <div class="paper-empty" id="paperEmpty">
+          <div class="eyebrow">02 · draft</div>
+          <p>Your documentation appears here once generated, laid out as a single markdown page you can download.</p>
+        </div>
+        <div class="doc-content" id="docContent" style="display:none;"></div>
+      </div>
+      <div class="title-block" id="titleBlock" style="display:none;">
+        <table>
+          <tr><td class="k">project</td><td id="tbProject">—</td><td class="k">rev</td><td id="tbRev">A</td></tr>
+          <tr><td class="k">date</td><td id="tbDate">—</td><td class="k">files</td><td id="tbFiles">0</td></tr>
+          <tr><td class="k" colspan="1">status</td><td colspan="3" class="stamp-status" id="tbStatus">—</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
